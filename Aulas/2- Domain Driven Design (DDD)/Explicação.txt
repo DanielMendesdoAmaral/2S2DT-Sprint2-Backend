@@ -1,0 +1,1 @@
+DDD -> É um MVC ainda mais separado. No DDD, o Model se divide em Domains (onde ficam apenas atributos) e em Repositories (onde ficam os métodos definidos pela interface). O controlador é o único ainda mantido por inteiro. Também, não tem mais as views, pois serão substituídas por cada interface de cada dispositivo ou tipo de aplicação (web, mobile, desktop, etc.).
