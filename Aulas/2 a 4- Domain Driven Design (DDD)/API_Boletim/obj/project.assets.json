@@ -459,11 +459,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Juninho\\Desktop\\Códigos Daniel\\2S2DT-Sprint2-Backend\\Aulas\\2, 3- Domain Driven Design (DDD)\\API_Boletim\\API_Boletim.csproj",
+      "projectUniqueName": "C:\\Users\\Juninho\\Desktop\\Códigos Daniel\\2S2DT-Sprint2-Backend\\Aulas\\2 a 4- Domain Driven Design (DDD)\\API_Boletim\\API_Boletim.csproj",
       "projectName": "API_Boletim",
-      "projectPath": "C:\\Users\\Juninho\\Desktop\\Códigos Daniel\\2S2DT-Sprint2-Backend\\Aulas\\2, 3- Domain Driven Design (DDD)\\API_Boletim\\API_Boletim.csproj",
+      "projectPath": "C:\\Users\\Juninho\\Desktop\\Códigos Daniel\\2S2DT-Sprint2-Backend\\Aulas\\2 a 4- Domain Driven Design (DDD)\\API_Boletim\\API_Boletim.csproj",
       "packagesPath": "C:\\Users\\Juninho\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Juninho\\Desktop\\Códigos Daniel\\2S2DT-Sprint2-Backend\\Aulas\\2, 3- Domain Driven Design (DDD)\\API_Boletim\\obj\\",
+      "outputPath": "C:\\Users\\Juninho\\Desktop\\Códigos Daniel\\2S2DT-Sprint2-Backend\\Aulas\\2 a 4- Domain Driven Design (DDD)\\API_Boletim\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Juninho\\AppData\\Roaming\\NuGet\\NuGet.Config",

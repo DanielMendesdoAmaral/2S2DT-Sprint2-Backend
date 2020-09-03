@@ -58,6 +58,7 @@ namespace API_Boletim.Repositories
         {
             comando.Connection = conexao.Conectar();
 
+            //IMPORTANTE: Se você quiser colocar abaixo da seguinte forma: "SELECT * FROM Aluno WHERE IdAluno = " + id; vai funcionar.. só que colocar @id te protege contra ataques de SQL Injection.
             comando.CommandText = "SELECT * FROM Aluno WHERE IdAluno = @id";
             //Nós indicamos que o id mencionado no parâmetro do método BuscarPorId será o valor do @id no comando.
             comando.Parameters.AddWithValue("@id", id);
