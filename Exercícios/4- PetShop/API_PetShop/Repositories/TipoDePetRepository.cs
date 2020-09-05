@@ -7,5 +7,6 @@ namespace API_PetShop.Repositories
 {
     public class TipoDePetRepository
     {
+        
     }
 }
