@@ -12,6 +12,6 @@ namespace API_PetShop.Interfaces
         List<Raca> Ler();
         Raca BuscarPorId(int id);
         Raca Alterar(int id, Raca racaAlterada);
-        void Excluir(int id);
+        Raca Excluir(int id);
     }
 }

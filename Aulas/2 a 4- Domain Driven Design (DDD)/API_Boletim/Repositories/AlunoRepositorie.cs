@@ -65,7 +65,7 @@ namespace API_Boletim.Repositories
 
             SqlDataReader dados = comando.ExecuteReader();
 
-            //Como só existe um aluno com o id, já instanciamos o objeto sem precisar de um while.
+            //Como só existe um aluno com o id, já instanciamos o objeto sem precisar o colocar no while.
             Aluno aluno = new Aluno();
             while(dados.Read())
             {

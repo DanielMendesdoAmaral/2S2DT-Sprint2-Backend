@@ -13,6 +13,6 @@ namespace API_PetShop.Interfaces
         TipoDePet BuscarPorId(int id);
         TipoDePet BuscarPorDescricao(string descricao);
         TipoDePet Alterar(int id, TipoDePet tipoDePetAlterado);
-        void Excluir(int id);
+        TipoDePet Excluir(int id);
     }
 }

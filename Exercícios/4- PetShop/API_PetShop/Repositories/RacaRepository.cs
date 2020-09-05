@@ -24,7 +24,8 @@ namespace API_PetShop.Repositories
         {
             comando.Connection = conexao.Conectar();
 
-            comando.CommandText = "INSERT INTO Raca VALUES " +
+            comando.CommandText = "INSERT INTO Raca (Descricao, IdTipoDePet) " +
+                                  "VALUES " +
                                   "(@descricao, @idTipoDePet)";
             comando.Parameters.AddWithValue("@descricao", raca.Descricao);
             comando.Parameters.AddWithValue("@idTipoDePet", raca.IdTipoDePet);
@@ -81,11 +82,16 @@ namespace API_PetShop.Repositories
 
             SqlDataReader dados = comando.ExecuteReader();
 
-            Raca raca = new Raca();
-            raca.IdRaca = Convert.ToInt32(dados.GetValue(0));
-            raca.Descricao = dados.GetValue(1).ToString();
-            raca.IdTipoDePet = Convert.ToInt32(dados.GetValue(2));
+            comando.Parameters.Clear();
 
+            Raca raca = new Raca();
+            while (dados.Read())
+            {
+                raca.IdRaca = Convert.ToInt32(dados.GetValue(0));
+                raca.Descricao = dados.GetValue(1).ToString();
+                raca.IdTipoDePet = Convert.ToInt32(dados.GetValue(2));
+            }
+            
             conexao.Desconectar();
 
             return raca;
@@ -112,18 +118,30 @@ namespace API_PetShop.Repositories
             return racaAlterada;
         }
 
-        public void Excluir(int id)
+        /// <summary>
+        ///     Exclui a raça dos banco de dados que contém o id especificado.
+        /// </summary>
+        /// <param name="id">Id da raça a ser deletada.</param>
+        /// <returns>Retorna a raça deletada para uma melhor compreensão.</returns>
+        public Raca Excluir(int id)
         {
+            //Instância da raça que irá ser apagada, para ser retornada e mostrar a raça que foi apagada.
+            Raca raca = new Raca();
+            raca.IdRaca = BuscarPorId(id).IdRaca;
+            raca.Descricao = BuscarPorId(id).Descricao;
+            raca.IdTipoDePet = BuscarPorId(id).IdTipoDePet;
+
             comando.Connection = conexao.Conectar();
 
             comando.CommandText = "DELETE FROM Raca " +
-                                  "WHERE IdRaca = @id";
-            comando.Parameters.AddWithValue("@id", id);
+                                  "WHERE IdRaca = @idRaca";
+            comando.Parameters.AddWithValue("@idRaca", id);
 
-            //Use o NonQuery para comandos DML
             comando.ExecuteNonQuery();
 
             conexao.Desconectar();
+
+            return raca;
         }
     }
 }
