@@ -37,7 +37,7 @@ namespace API_Boletim.Context
             //Se estiver conectado.. (isso é necessário pois só executará se estiver conectado, poupando "esforço")
             if (conexao.State == System.Data.ConnectionState.Open)
             {
-                //Conecta.
+                //Desconecta.
                 conexao.Close();
             }
         }

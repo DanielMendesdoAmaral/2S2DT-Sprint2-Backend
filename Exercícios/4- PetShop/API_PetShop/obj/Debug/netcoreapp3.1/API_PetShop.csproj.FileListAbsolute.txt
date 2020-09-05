@@ -1,0 +1,10 @@
+C:\Users\Juninho\Desktop\Códigos Daniel\2S2DT-Sprint2-Backend\Exercícios\4- PetShop\API_PetShop\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\Juninho\Desktop\Códigos Daniel\2S2DT-Sprint2-Backend\Exercícios\4- PetShop\API_PetShop\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\Juninho\Desktop\Códigos Daniel\2S2DT-Sprint2-Backend\Exercícios\4- PetShop\API_PetShop\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\Juninho\Desktop\Códigos Daniel\2S2DT-Sprint2-Backend\Exercícios\4- PetShop\API_PetShop\bin\Debug\netcoreapp3.1\API_PetShop.exe
+C:\Users\Juninho\Desktop\Códigos Daniel\2S2DT-Sprint2-Backend\Exercícios\4- PetShop\API_PetShop\obj\Debug\netcoreapp3.1\API_PetShop.csprojAssemblyReference.cache
+C:\Users\Juninho\Desktop\Códigos Daniel\2S2DT-Sprint2-Backend\Exercícios\4- PetShop\API_PetShop\obj\Debug\netcoreapp3.1\API_PetShop.AssemblyInfoInputs.cache
+C:\Users\Juninho\Desktop\Códigos Daniel\2S2DT-Sprint2-Backend\Exercícios\4- PetShop\API_PetShop\obj\Debug\netcoreapp3.1\API_PetShop.AssemblyInfo.cs
+C:\Users\Juninho\Desktop\Códigos Daniel\2S2DT-Sprint2-Backend\Exercícios\4- PetShop\API_PetShop\obj\Debug\netcoreapp3.1\API_PetShop.RazorTargetAssemblyInfo.cache
+C:\Users\Juninho\Desktop\Códigos Daniel\2S2DT-Sprint2-Backend\Exercícios\4- PetShop\API_PetShop\obj\Debug\netcoreapp3.1\staticwebassets\API_PetShop.StaticWebAssets.Manifest.cache
+C:\Users\Juninho\Desktop\Códigos Daniel\2S2DT-Sprint2-Backend\Exercícios\4- PetShop\API_PetShop\obj\Debug\netcoreapp3.1\staticwebassets\API_PetShop.StaticWebAssets.xml
