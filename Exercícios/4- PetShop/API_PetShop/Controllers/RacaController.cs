@@ -16,7 +16,7 @@ namespace API_PetShop.Controllers
     {
         RacaRepository racaRepository = new RacaRepository();
 
-        // GET: api/<RacaController>
+        // GET: <RacaController>
         /// <summary>
         ///     Quando acessada a rota acima com o método GET, é exibido todas as raças cadastradas no banco de dados.
         /// </summary>
@@ -27,7 +27,7 @@ namespace API_PetShop.Controllers
             return racaRepository.Ler();
         }
 
-        // GET api/<RacaController>/5
+        // GET <RacaController>/5
         /// <summary>
         ///     Quando acessada a rota acima com o método GET, é exibida a raça cadastrada no banco de dados que tenha o id especificado.
         /// </summary>
@@ -39,7 +39,7 @@ namespace API_PetShop.Controllers
             return racaRepository.BuscarPorId(id);
         }
 
-        // POST api/<RacaController>
+        // POST <RacaController>
         /// <summary>
         ///     Quando acessada a rota acima com o método POST, é possível cadastrar uma raça no banco de dados a partir de um objeto em JSON inserido no body da requisição.
         /// </summary>
@@ -51,7 +51,7 @@ namespace API_PetShop.Controllers
             return racaRepository.Cadastrar(raca);
         }
 
-        // PUT api/<RacaController>/5
+        // PUT <RacaController>/5
         /// <summary>
         ///     Quando acessada a rota acima com o método PUT, é possível alterar uma raça no banco de dados a partir de um objeto em JSON inserido no body da requisição e o Id da raça cadastrada no banco de dados a ser alterada.
         /// </summary>
@@ -64,7 +64,7 @@ namespace API_PetShop.Controllers
             return racaRepository.Alterar(id, racaAlterada);
         }
 
-        // DELETE api/<RacaController>/5
+        // DELETE <RacaController>/5
         /// <summary>
         ///     Quando acessada a rota acima com o método DELETE, a raça que contém o id especificado será deletada do banco de dados.
         /// </summary>
