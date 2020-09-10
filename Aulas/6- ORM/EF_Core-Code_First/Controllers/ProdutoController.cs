@@ -51,7 +51,7 @@ namespace EF_Core_Code_First.Controllers
         /// </summary>
         /// <param name="nome">Nome do produto desejado.</param>
         /// <returns>Retorna o produto que tem o nome especificado.</returns>
-        [HttpGet("{nome}")]
+        [HttpGet("FiltrarPorNome/{nome}")]
         public List<Produto> Get(string nome)
         {
             return _produtoRepository.BuscarPorNome(nome);
