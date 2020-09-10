@@ -9,7 +9,7 @@ namespace EF_Core_Code_First.Contexts
 {
     public class PedidoContext : DbContext
     {
-        //Aqui agora indicamos por meio de DbSets os domínios que farão parte desse contexto. Por exemplo, colocamos a tabela Pedido como Pedidos no banco de dados.
+        //Aqui agora indicamos por meio de DbSets os domínios que farão parte desse contexto. Por exemplo, dizemos que o domínio ou a clase Pedido será a tabela Pedidos no banco de dados.
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<PedidoProduto> PedidosProdutos { get; set; }
