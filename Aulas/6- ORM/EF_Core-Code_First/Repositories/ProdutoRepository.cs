@@ -12,6 +12,8 @@ namespace EF_Core_Code_First.Repositories
     {
         private readonly PedidoContext _ctx;
 
+        //PARA QUE NOSSA API SE COMPORTE COMO UMA RESTFUL API, PRECISAMOS TRATAR ERROS DE BANCO DE DADOS E CAPTURAR, ASSIM ELES FICARÃO NO LOG DO BANCO DE DADOS (QUANDO FOREM ERROS DE BANCO). A PARTIR DE AGORA, UTILIZAREMOS TRY CATCH. LEMBRE-SE QUE VOCÊ PODE USAR MAIS DE UM CATCH TAMBÉM PARA CAPTURAR DIFERENTES ERROS. VEJA A ULA DE TRY CATCH.
+
         /// <summary>
         ///     Construtor que certifica que toda vez que um ProdutoRepository for criado, o contexto seja instanciado.
         /// </summary>
@@ -28,6 +30,7 @@ namespace EF_Core_Code_First.Repositories
         /// <returns>Uma lista de produtos cadastrados no banco de dados.</returns>
         public List<Produto> Ler()
         {
+            //Colocamos todos dentro de um try, pois ao dar erro, ele gravará a exception no log do banco de dados.
             try
             {
                 //Pega todos os produtos do DbSet Produtos e joga em uma lista.
@@ -161,7 +164,7 @@ namespace EF_Core_Code_First.Repositories
             }
             catch (Exception ex)
             {
-
+                //TODO : Toda vez que você colocar um TODO, ele aparecerá no Task List. Vc pode usar como um lembrete.
                 throw new Exception(ex.Message);
             }
         }

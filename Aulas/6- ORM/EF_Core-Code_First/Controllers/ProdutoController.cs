@@ -22,72 +22,142 @@ namespace EF_Core_Code_First.Controllers
             _produtoRepository = new ProdutoRepository();
         }
 
-        // GET: <ProdutoController>
+        //PARA QUE NOSSA API SE COMPORTE COMO UMA RESTFUL API, PRECISAMOS TRATAR ERROS DE REQUISIÇÃO/RESPONSE E RETORNAR STATUS CODE. A PARTIR DE AGORA, UTILIZAREMOS TRY CATCH E RETORNAREMOS OS STATUS CODE. LEMBRE-SE QUE VOCÊ PODE USAR MAIS DE UM CATCH TAMBÉM PARA CAPTURAR DIFERENTES ERROS. VEJA A ULA DE TRY CATCH.
+
+
+        //IActionResult: Resultado de uma ação, GET, POST, etc.
+
         /// <summary>
-        ///     Quando acessada a rota acima com o método GET, é exibido todos os produtos cadastrados no banco de dados.
+        ///     Quando acessada a rota Produto com o método GET, retorna todos os produtos do banco de dados.
         /// </summary>
-        /// <returns>Lista contendo todos os produtos cadastrados no banco de dados.</returns>
+        /// <returns>Todos os produtos do banco de dados ou erros.</returns>
         [HttpGet]
-        public List<Produto> Get()
+        public IActionResult Get()
         {
-            return _produtoRepository.Ler();
+            try
+            {
+                var produtos = _produtoRepository.Ler();
+
+                if (produtos.Count == 0)
+                    return NoContent(); //204
+
+                return Ok(produtos); //200
+            }
+            //Talvez dê pra incrementar mais esse catch...
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message); //400
+            }
         }
 
-        // GET <ProdutoController>/5
         /// <summary>
-        ///     Quando acessada a rota acima com o método GET, é exibido o produto cadastrado no banco de dados que tenha o id especificado.
+        ///     Quando acessada a rota Produto/{id} com o método GET, retorna o produto do banco de dados que tenha o id especificado.
         /// </summary>
-        /// <param name="id">Id do produto desejado.</param>
-        /// <returns>Retorna o produto que tem o id especificado.</returns>
+        /// <param name="id">Id do produto a ser retornado.</param>
+        /// <returns>Produto com o id especificado ou erros.</returns>
         [HttpGet("{id}")]
-        public Produto Get(Guid id)
+        public IActionResult Get(Guid id)
         {
-            return _produtoRepository.BuscarPorId(id);
+            try
+            {
+                Produto produto = _produtoRepository.BuscarPorId(id);
+
+                if (produto == null)
+                    return NotFound(); //404
+
+                return Ok(produto);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        // GET <ProdutoController>/Filtrar/Nome
         /// <summary>
-        ///     Quando acessada a rota acima com o método GET, é exibido o produto cadastrado no banco de dados que contenha o nome especificado.
+        ///     Quando acessada a rota Produto/FiltrarPorNome/{nome} com o método GET, retorna o produto do banco de dados que contenha o nome especificado.
         /// </summary>
-        /// <param name="nome">Nome do produto desejado.</param>
-        /// <returns>Retorna o produto que tem o nome especificado.</returns>
+        /// <param name="nome">Nome do produto a ser retornado.</param>
+        /// <returns>Produto que contém o nome especificado ou erros.</returns>
         [HttpGet("FiltrarPorNome/{nome}")]
-        public List<Produto> Get(string nome)
+        public IActionResult Get(string nome)
         {
-            return _produtoRepository.BuscarPorNome(nome);
+            try
+            {
+                var produtos = _produtoRepository.BuscarPorNome(nome);
+
+                if (produtos.Count == 0)
+                    return NoContent();
+
+                return Ok(produtos);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        // POST <ProdutoController>
         /// <summary>
-        ///     Quando acessada a rota acima com o método POST, é possível cadastrar um produto no banco de dados a partir de um objeto em JSON inserido no body da requisição.
+        ///     Quando acessada a rota Produto com o método POST, você pode cadastrar um produto enviado via Body.
         /// </summary>
-        /// <param name="produto">Produto inserido no body da requisição que será cadastrado no banco de dados.</param>
+        /// <param name="produto">Produto a ser cadastrado.</param>
+        /// <returns>Retorna o produto que foi cadastrado.</returns>
         [HttpPost]
-        public void Post([FromBody] Produto produto)
+        public IActionResult Post([FromBody] Produto produto)
         {
-            _produtoRepository.Adicionar(produto);
+            try
+            {
+                _produtoRepository.Adicionar(produto);
+
+                return Ok(produto);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        // PUT <ProdutoController>/5
         /// <summary>
-        ///     Quando acessada a rota acima com o método PUT, é possível alterar um produto no banco de dados a partir de um objeto em JSON inserido no body da requisição.
+        ///     Quando acessada a rota Produto com o método PUT, você pode alterar um produto enviado via Body. O método vai pegar o id do objeto enviado via Body e já vai saber quem tem que alterar.
         /// </summary>
-        /// <param name="produtoAlterado">Produto já alterado, que irá substituir o produto a ser alterado.</param>
+        /// <param name="produtoAlterado">Produto já alterado.</param>
+        /// <returns>Retorna o produto que foi alterado.</returns>
         [HttpPut]
-        public void Put([FromBody] Produto produtoAlterado)
+        public IActionResult Put([FromBody] Produto produtoAlterado)
         {
-            _produtoRepository.Alterar(produtoAlterado);
+            try
+            {
+                _produtoRepository.Alterar(produtoAlterado);
+
+                return Ok(produtoAlterado);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        // DELETE <RacaController>/5
         /// <summary>
-        ///     Quando acessada a rota acima com o método DELETE, o produto que contém o id especificado será deletado do banco de dados.
+        ///     Quando acessada a rota Produto/{id} com o método DELETE, você pode deletar um produto.
         /// </summary>
         /// <param name="id">Id do produto a ser deletado.</param>
+        /// <returns>Retorna o produto que foi deletado ou erros.</returns>
         [HttpDelete("{id}")]
-        public void Delete(Guid id)
+        public IActionResult Delete(Guid id)
         {
-            _produtoRepository.Excluir(id);
+            try
+            {
+                var produto = _produtoRepository.BuscarPorId(id);
+
+                if (produto == null)
+                    return NotFound();
+
+                _produtoRepository.Excluir(id);
+                return Ok(produto);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
