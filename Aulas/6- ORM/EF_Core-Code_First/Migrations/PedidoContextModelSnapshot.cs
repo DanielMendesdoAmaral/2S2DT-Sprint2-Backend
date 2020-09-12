@@ -80,13 +80,13 @@ namespace EF_Core_Code_First.Migrations
             modelBuilder.Entity("EF_Core_Code_First.Domains.PedidoProduto", b =>
                 {
                     b.HasOne("EF_Core_Code_First.Domains.Pedido", "Pedido")
-                        .WithMany()
+                        .WithMany("PedidosProdutos")
                         .HasForeignKey("IdPedido")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("EF_Core_Code_First.Domains.Produto", "Produto")
-                        .WithMany()
+                        .WithMany("PedidosProdutos")
                         .HasForeignKey("IdProduto")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

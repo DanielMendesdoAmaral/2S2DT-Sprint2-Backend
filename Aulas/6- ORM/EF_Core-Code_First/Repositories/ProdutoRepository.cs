@@ -122,7 +122,7 @@ namespace EF_Core_Code_First.Repositories
                 //Armazenamos o produto atual neste objeto. Porque não localizamos o objeto com o Find? Por que se mais tarde precisarmos alterar a forma como achamos produtos buscando por id, é só alterar o método BuscarPorId, assim só iremos precisar alterar em um lugar.
                 Produto produtoTemporario = BuscarPorId(produto.IdProduto);
 
-                //Se o produto não existir gera uma exceção.
+                //Se o produto não existir gera uma exceção personalizada.
                 if (produtoTemporario == null)
                     throw new Exception("Produto não encontrado");
 
@@ -164,7 +164,8 @@ namespace EF_Core_Code_First.Repositories
             }
             catch (Exception ex)
             {
-                //TODO : Toda vez que você colocar um TODO, ele aparecerá no Task List. Vc pode usar como um lembrete.
+                //TODO : Toda vez que você colocar um TODO, ele aparecerá no Task List. Vc pode usar como um lembrete como algo para fazer depois.
+                //TODO: Cadastrar erros no log.
                 throw new Exception(ex.Message);
             }
         }

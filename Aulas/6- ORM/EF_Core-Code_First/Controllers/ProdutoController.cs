@@ -41,7 +41,12 @@ namespace EF_Core_Code_First.Controllers
                 if (produtos.Count == 0)
                     return NoContent(); //204
 
-                return Ok(produtos); //200
+                //Note que aqui passamos mais informações no que nos outros métodos. Isso é um exemplo. É inteerssante retornar algumas informações a mais, mas claro, depende do projeto.
+                return Ok(new
+                { // ok = 200
+                    totalCount = produtos.Count, //Mostra a qtd de objetos
+                    data = produtos //Mostra os objetos
+                }); 
             }
             //Talvez dê pra incrementar mais esse catch...
             catch (Exception ex)
@@ -69,7 +74,12 @@ namespace EF_Core_Code_First.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                //O BadRequest aceita qualquer objeto como parâmetro.
+                return BadRequest(new
+                {
+                    statusCode = 404,
+                    error = ex.Message //Aqui você também pode colocar uma mensagem de erro personalizada.
+                });
             }
         }
 

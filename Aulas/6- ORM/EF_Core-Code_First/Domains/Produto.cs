@@ -13,6 +13,9 @@ namespace EF_Core_Code_First.Domains
         public string Nome { get; set; }
         public float Preco { get; set; }
 
+        //Relacionamento com a tabela PedidoProduto, que é 1,n
+        public List<PedidoProduto> PedidosProdutos { get; set; }
+
         /// <summary>
         ///     Método construtor que garante que toda vez que um Produto for instanciado, ele receba um id único.
         /// </summary>

@@ -25,7 +25,15 @@ namespace EF_Core_Code_First
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            //Antes tinha só esse método, mas ai gerou um erro de Loop, pois a classe Pedido tem PedidosProdutos que tem Produto, e a classe Produto tem PedidosProdutos que tem Pedido.
+            //services.AddControllers();
+            //Agora ficou:
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                //Esse método também não tinha e faz nao retornar produtos nulos nos pedidos.
+                options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
