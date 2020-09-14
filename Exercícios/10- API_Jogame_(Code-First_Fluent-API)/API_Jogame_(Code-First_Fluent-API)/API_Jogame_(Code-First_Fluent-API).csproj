@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Context\2- Contexto.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Controllers\" />
   </ItemGroup>
 
