@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace API_Jogame__Code_First_Fluent_API_.Domains
 {
-    protected abstract class Base
+    public abstract class Base
     {
         //PK
         public Guid Id { get; set; }
