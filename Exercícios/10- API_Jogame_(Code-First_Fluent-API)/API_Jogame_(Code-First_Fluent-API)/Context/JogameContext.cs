@@ -14,6 +14,10 @@ namespace API_Jogame__Code_First_Fluent_API_.Context
         public DbSet<Jogo> Jogos { get; set; }
         public DbSet<JogosJogadores> JogosJogadores { get; set; }
 
+        /// <summary>
+        ///     Configura o banco de dados através de sobrescrita e recursividade.
+        /// </summary>
+        /// <param name="optionBuilder">Contexto que contém as configurações do banco de dados.</param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionBuilder)
         {
             if(!optionBuilder.IsConfigured)
@@ -23,6 +27,10 @@ namespace API_Jogame__Code_First_Fluent_API_.Context
             }
         }
 
+        /// <summary>
+        ///     Utiliza-se de FluentAPI para fazer o mapeamento de entidades e define constraints dos atributos para gerar o banco de dados automaticamente através do ORM Entity Framework Core.
+        /// </summary>
+        /// <param name="modelBuilder">O construtor do banco de dados, o mapeador de entidades.</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //OBS: O método HasKey() é usado para definir a chave primária de uma entidade. Automaticamente, o EF Core vai gerar as chaves primárias de suas entidades, quando encontrar algum atribudo denominado (Id) ou (NomeId). Ainda assim, o método HasKey() é útil para gerar chaves primárias compostas (o que é impossível fazer com DataAnnotations e não tem geração automática).
