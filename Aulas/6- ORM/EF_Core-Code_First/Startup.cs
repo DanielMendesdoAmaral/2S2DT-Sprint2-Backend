@@ -50,6 +50,9 @@ namespace EF_Core_Code_First
 
             app.UseAuthorization();
 
+            //Coloque isso pro caminho da imagem funcionar.
+            app.UseStaticFiles();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

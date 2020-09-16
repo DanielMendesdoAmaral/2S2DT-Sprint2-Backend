@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using EF_Core_Code_First.Domains;
 using EF_Core_Code_First.Interfaces;
 using EF_Core_Code_First.Repositories;
+using EF_Core_Code_First.Utils;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -77,7 +79,7 @@ namespace EF_Core_Code_First.Controllers
                 //O BadRequest aceita qualquer objeto como parâmetro.
                 return BadRequest(new
                 {
-                    statusCode = 404,
+                    statusCode = 400,
                     error = ex.Message //Aqui você também pode colocar uma mensagem de erro personalizada.
                 });
             }
@@ -112,10 +114,16 @@ namespace EF_Core_Code_First.Controllers
         /// <param name="produto">Produto a ser cadastrado.</param>
         /// <returns>Retorna o produto que foi cadastrado.</returns>
         [HttpPost]
-        public IActionResult Post([FromBody] Produto produto)
+        public IActionResult Post([FromForm] Produto produto) //Aqui vamos fazer algumas alterações para o cadastro de arquivos, que em nosso caso só será imagens. A partir de agora, o usuário não vai mais colocar o produto via body, mas via formulário. Então colocamos FromForm. OBS: O usuário vai mandar a imagem, mas nós nãov amos salvar a imagem, mas sim o caminho dela. Ao acessar produto.Imagem. vai aparecer algumas propriedades.. por exemplo, vc pode escolher receber apenas imagens .png .
         {
             try
             {
+                if(produto.Imagem != null)
+                {
+                    var urlImagem = Upload.Local(produto.Imagem);
+                    produto.UrlImagem = urlImagem;
+                }
+
                 _produtoRepository.Adicionar(produto);
 
                 return Ok(produto);
