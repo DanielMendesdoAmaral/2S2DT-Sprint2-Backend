@@ -37,10 +37,7 @@ namespace API_Jogame__Code_First_Fluent_API_.Repositories
         {
             try
             {
-                return _ctx.Jogadores
-                    .Include(j => j.JogosJogadores)
-                    .ThenInclude(j => j.Jogo)
-                    .FirstOrDefault(j => j.Id == id);
+                return _ctx.Jogadores.FirstOrDefault(j => j.Id == id);
             }
             catch (Exception ex)
             {
@@ -52,10 +49,7 @@ namespace API_Jogame__Code_First_Fluent_API_.Repositories
         {
             try
             {
-                return _ctx.Jogadores
-                    .Include(j => j.JogosJogadores)
-                    .ThenInclude(j => j.Jogo)
-                    .Where(j => j.Nome.Contains(nome)).ToList();
+                return _ctx.Jogadores.Where(j => j.Nome.Contains(nome)).ToList();
             }
             catch (Exception ex)
             {

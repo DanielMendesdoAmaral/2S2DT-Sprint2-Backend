@@ -1,4 +1,7 @@
 using System;
+using System.Reflection;
+using System.IO;
+using Microsoft.OpenApi.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -34,6 +37,34 @@ namespace EF_Core_Code_First
                 //Esse método também não tinha e faz nao retornar produtos nulos nos pedidos.
                 options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
             });
+
+            //Adicionamos o gerador do Swagger.
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Loja API",
+                    Description = "API que contém cadastrados no banco de dados produtos e pedidos da loja.",
+                    TermsOfService = new Uri("https://naotem.com/naotem"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Daniel Mendes do Amaral",
+                        Email = "daniel.amaral720@gmail.com",
+                        Url = new Uri("https://github.com/DanielMendesdoAmaral"),
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "Copyright",
+                        Url = new Uri("https://example.com/license"),
+                    }
+                });
+
+                //Adiciona os comentários dos métodos dos controllers, passando caminhos e etc.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +83,15 @@ namespace EF_Core_Code_First
 
             //Coloque isso pro caminho da imagem funcionar.
             app.UseStaticFiles();
+
+            //Usa o Swagger.
+            app.UseSwagger();
+
+            //Definimos o endpoint e o nome da versão.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API_Loja_V1");
+            });
 
             app.UseEndpoints(endpoints =>
             {

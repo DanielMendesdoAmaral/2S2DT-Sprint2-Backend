@@ -122,7 +122,7 @@ namespace API_Jogame__Code_First_Fluent_API_.Controllers
         ///     Quando acessada a rota acima com o método POST, é possível cadastrar no banco de dados um objeto do tipo Jogador passado via body.
         /// </summary>
         /// <param name="jogador">Objeto do tipo Jogador a ser cadastrado no banco de dados.</param>
-        /// <returns></returns>
+        /// <returns>Objeto do tipo Jogador cadastrado.</returns>
         [HttpPost]
         public IActionResult Post([FromBody] Jogador jogador)
         {
@@ -142,16 +142,59 @@ namespace API_Jogame__Code_First_Fluent_API_.Controllers
             }
         }
 
-        // PUT api/<JogadorController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        // PUT api/<JogadorController>
+        /// <summary>
+        ///     Quando acessada a rota acima com o método PUT, é possível alterar um jogador cadastrado no banco de dados.
+        /// </summary>
+        /// <param name="jogador">Objeto do tipo Jogador a ser alterado.</param>
+        /// <returns>Objeto do tipo Jogador alterado.</returns>
+        [HttpPut]
+        public IActionResult Put([FromBody] Jogador jogador)
         {
+            try
+            {
+                _jogadorRepository.Alterar(jogador);
+
+                return Ok(jogador);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new
+                {
+                    statusCode = 400,
+                    error = $"{ex.Message}. Para mais informações, envie um email para nossa equipe de suporte: suport@email.com"
+                });
+            }
         }
 
         // DELETE api/<JogadorController>/5
+        /// <summary>
+        ///     Quando acessada a rota acima com o método DELETE, é possível deletar um jogador cadastrado no banco de dados.
+        /// </summary>
+        /// <param name="id">Id do jogador a ser deletado.</param>
+        /// <returns>Objeto do tipo Jogador deletado.</returns>
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(Guid id)
         {
+            try
+            {
+                var jogador = _jogadorRepository.Buscar(id);
+
+                if (jogador == null)
+                    return NotFound();
+
+                _jogadorRepository.Excluir(id);
+
+                return Ok(jogador);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new
+                {
+                    statusCode = 400,
+                    error = $"{ex.Message}. Para mais informações, envie um email para nossa equipe de suporte: suport@email.com"
+                });
+            }
         }
     }
 }
