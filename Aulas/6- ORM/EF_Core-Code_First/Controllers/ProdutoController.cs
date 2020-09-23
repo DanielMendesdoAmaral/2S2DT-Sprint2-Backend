@@ -72,7 +72,12 @@ namespace EF_Core_Code_First.Controllers
                 if (produto == null)
                     return NotFound(); //404
 
-                return Ok(produto);
+                ConversorMonetario dolar = new ConversorMonetario();
+
+                return Ok(new { 
+                    produto,
+                    valorDolar = produto.Preco / dolar.GetDolarValue()
+                });
             }
             catch (Exception ex)
             {
